@@ -31,6 +31,10 @@ test1d: FFT1DTest.cpp GNUmakefile $(LIBS_LOCAL)/libfft1D.a
 testMD: GNUmakefile $(OBJS) FFTMDTest$(osuffix) $(LIBS_LOCAL)/libfft3D.a $(LIBS_LOCAL)/libfft1D.a 
 	$(CXX) $(CFLAGS) $(OBJS) FFTMDTest$(osuffix) $(LIB_FLAGS) -lfft3D  -o test$(DIM)D.exe
 
+# Define the new target for the benchmark program
+fftBenchmark: fftBenchmark.cpp $(OBJS) $(LIBS_LOCAL)/libfft3D.a $(LIBS_LOCAL)/libfft1D.a
+	$(CXX) $(CFLAGS) $(OBJS) fftBenchmark.cpp $(LIB_FLAGS) -lfft3D -o fftBenchmark.exe
+
 
 clean:
 	rm  -rf *.o *.exe *.d *.dSYM $(LIBS_LOCAL)/*.a $(FFT_HOME)/*.d $(RMDA_HOME)/*.o $(RMDA_HOME)/*.d
